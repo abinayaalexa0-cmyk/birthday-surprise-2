@@ -1,1 +1,262 @@
-# birthday-surprise-2
+<!DOCTYPE html>
+<html>
+<head>
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:linear-gradient(120deg,#ff9a9e,#fad0c4);
+color:white;
+overflow-x:hidden;
+}
+
+section{
+padding:60px;
+}
+
+h1{
+font-size:50px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:white;
+color:#ff4081;
+margin-top:10px;
+}
+
+#quiz,#cake,#photos,#letter{
+display:none;
+}
+
+.memory{
+background:rgba(255,255,255,0.15);
+padding:20px;
+margin:30px auto;
+border-radius:15px;
+max-width:600px;
+}
+
+img{
+width:250px;
+margin:10px;
+border-radius:12px;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);}
+100%{transform:translateY(-100vh);}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<section>
+<h1>🎂 Happy Birthday 🎂</h1>
+<p>I made something special just for you 💖</p>
+<button onclick="startQuiz()">Start Surprise</button>
+</section>
+
+<section id="quiz">
+<h2>🧩 Friendship Quiz</h2>
+<p>Where did we first become friends?</p>
+
+<button onclick="correct()">School</button>
+<button onclick="wrong()">Internet</button>
+<button onclick="wrong()">Library</button>
+
+<p id="quizresult"></p>
+</section>
+
+<section id="cake">
+<h2>🎂 Blow the Birthday Candle</h2>
+<p>Click the candle to blow it out</p>
+
+<button onclick="blow()">🕯️</button>
+
+<p id="cakeText"></p>
+</section>
+
+<section id="photos">
+<h2>📸 Our Memories</h2>
+
+<div class="memory">
+<img src="memory1.png">
+<p>
+The first time we went out together and ate panipuri in the evening.
+Such a small moment, but it became one of my favorite memories.
+</p>
+</div>
+
+<div class="memory">
+<img src="memory2.png">
+<p>
+I will never forget the day you defended me.
+Even though you knew your other friend longer, you stood up for me.
+That moment meant a lot to me.
+</p>
+</div>
+
+<div class="memory">
+<img src="memory3.png">
+<p>
+After school our phone calls sometimes lasted one and a half hours.
+We talked about everything and laughed about nothing.
+Those calls are memories I will always cherish.
+</p>
+</div>
+
+<div class="memory">
+<img src="memory4.png">
+<p>
+There were moments when I felt like no one was there for me.
+But you always were.
+And that is something I will never forget.
+</p>
+</div>
+
+<div class="memory">
+<img src="memory5.png">
+<p>
+Nine years of friendship.
+Nine years of memories, laughter, and support.
+And I am grateful for every moment.
+</p>
+</div>
+
+<br>
+<button onclick="showLetter()">Next Surprise 💌</button>
+
+</section>
+
+<section id="letter">
+
+<h2>💌 Apology + Birthday Letter</h2>
+
+<p style="max-width:750px;margin:auto;font-size:20px;line-height:1.6">
+
+My dear best friend,<br><br>
+
+First, before anything else, I want to say I am truly sorry. I know I couldn’t be there with you to celebrate your birthday in person, and I couldn’t wish you the way you truly deserve. That honestly makes me feel a little sad, because if there is one person in the world who deserves a beautiful celebration, it is you.<br><br>
+
+Sometimes distance and circumstances make things difficult, but one thing they can never change is how important you are to me. Even if I am not standing beside you today, please know that you are still in my thoughts and in my heart.<br><br>
+
+You are not just a friend to me. You are someone who has been part of my memories, my laughter, my difficult days, and my happiest moments. You are the person who made ordinary days feel special and simple moments feel unforgettable.<br><br>
+
+There are people we meet in life, and then there are rare people who become part of our story. You are one of those rare people for me.<br><br>
+
+So today, even if my wish is a little late or even if I cannot say it face-to-face, I want you to hear this clearly:<br><br>
+
+<b>Happy Birthday to one of the most wonderful people in my life. 🎂</b><br><br>
+
+I hope this new year of your life brings you:<br><br>
+
+• happiness that stays for a long time<br>
+• dreams that slowly become real<br>
+• moments that make you smile without reason<br>
+• and memories that you will look back on with warmth.<br><br>
+
+Thank you for being someone who brought kindness, laughter, and unforgettable memories into my life.<br><br>
+
+And even if I couldn't celebrate with you today, please remember something very important:<br><br>
+
+<b>You are appreciated. You are valued. And you are someone I will always be grateful to have in my life.</b><br><br>
+
+Once again,<br><br>
+
+<b>Happy Birthday.</b><br>
+May your life be filled with happiness, peace, and beautiful moments. 🎉💖
+
+</p>
+
+</section>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+
+function startQuiz(){
+document.getElementById("quiz").style.display="block";
+}
+
+function correct(){
+document.getElementById("quizresult").innerHTML="Correct! 🎉";
+document.getElementById("cake").style.display="block";
+}
+
+function wrong(){
+document.getElementById("quizresult").innerHTML="Try again 😊";
+}
+
+function blow(){
+document.getElementById("cakeText").innerHTML="🎉 The candle is blown! Make a wish!";
+document.getElementById("photos").style.display="block";
+}
+
+function showLetter(){
+document.getElementById("letter").style.display="block";
+}
+
+for(let i=0;i<30;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=4+Math.random()*4+"s";
+document.body.appendChild(heart);
+}
+
+const canvas=document.getElementById("fireworks");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+function firework(){
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height/2;
+
+for(let i=0;i<20;i++){
+ctx.beginPath();
+ctx.arc(x+Math.random()*60-30,y+Math.random()*60-30,3,0,Math.PI*2);
+ctx.fillStyle="white";
+ctx.fill();
+}
+}
+
+setInterval(()=>{
+ctx.clearRect(0,0,canvas.width,canvas.height);
+firework();
+},1000);
+
+</script>
+
+</body>
+</html>
